@@ -1,0 +1,37 @@
+﻿@model PetFoodBrandManagement.Model.Entities.Brand
+
+@{
+    ViewData["Title"] = "Yeni Marka";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Yeni Marka Ekle</h1>
+    <p>Yeni bir mama markası oluşturabilirsiniz.</p>
+</div>
+
+<div class="content-card">
+    <form action="/Admin/Brand/Add" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Marka Adı</label>
+            <input name="BrandName" class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Açıklama</label>
+            <textarea name="Description" class="form-control-custom" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Logo Seç</label>
+            <input type="file" name="logoFile" class="form-control-custom" />
+        </div>
+
+        <button type="submit" class="btn-purple">
+            <i class="bi bi-check-circle"></i> Kaydet
+        </button>
+
+        <a href="/Admin/Brand/Index" class="btn-cancel">Vazgeç</a>
+    </form>
+</div>

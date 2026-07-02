@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - PetFood</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="~/css/user.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="user-navbar">
+
+        <div class="logo">
+            <i class="bi bi-paw-fill"></i>
+
+            <div>
+                <h3>Pet<span>Food</span></h3>
+                <small>Premium Pet Nutrition</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="/Home/Index">Ana Sayfa</a>
+            <a href="/Product/Index">Ürünler</a>
+            <a href="/Order/MyOrders">Siparişlerim</a>
+            <a href="/Review/MyReviews">Yorumlarım</a>
+            <a href="#">Hakkımızda</a>
+            <a href="#">İletişim</a>
+        </nav>
+
+        <div class="user-actions">
+
+            <i class="bi bi-cart3"></i>
+
+            @if (Context.Session.GetString("UserName") == null)
+            {
+                <a href="/Account/Login" class="user-pill" style="text-decoration:none;">
+
+                    <i class="bi bi-person-fill"></i>
+
+                    <span>Giriş Yap</span>
+
+                </a>
+            }
+            else
+            {
+                <div class="user-pill">
+
+                    <i class="bi bi-person-fill"></i>
+
+                    <span>@Context.Session.GetString("FullName")</span>
+
+                    <a href="/Account/Logout"
+                       style="margin-left:10px;color:white;text-decoration:none;font-size:13px;">
+                        Çıkış
+                    </a>
+
+                </div>
+            }
+
+        </div>
+
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>

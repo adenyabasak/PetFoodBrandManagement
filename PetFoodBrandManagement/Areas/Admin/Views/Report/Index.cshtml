@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Raporlar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .report-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+    }
+
+    .report-card {
+        background: #fff;
+        border-radius: 24px;
+        padding: 28px;
+        min-height: 145px;
+        box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+        border: 1px solid #e5e7eb;
+    }
+
+    .report-card h5 {
+        font-size: 15px;
+        color: #6b7280;
+        margin-bottom: 15px;
+    }
+
+    .report-card h2 {
+        font-size: 34px;
+        font-weight: 700;
+        color: #7c3aed;
+    }
+</style>
+
+<div class="dashboard-title">
+    <h1>Raporlar</h1>
+    <p>Sistem genelindeki temel istatistikleri buradan görebilirsiniz.</p>
+</div>
+
+<div class="report-grid">
+
+    <div class="report-card">
+        <h5>Toplam Marka</h5>
+        <h2>@ViewBag.BrandCount</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Toplam Kategori</h5>
+        <h2>@ViewBag.CategoryCount</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Toplam Ürün</h5>
+        <h2>@ViewBag.ProductCount</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Toplam Sipariş</h5>
+        <h2>@ViewBag.OrderCount</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Toplam Yorum</h5>
+        <h2>@ViewBag.ReviewCount</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Aktif Ürün</h5>
+        <h2>@ViewBag.ActiveProduct</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Toplam Stok</h5>
+        <h2>@ViewBag.TotalStock</h2>
+    </div>
+
+    <div class="report-card">
+        <h5>Ortalama Fiyat</h5>
+        <h2>@ViewBag.AveragePrice ₺</h2>
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+﻿@model PetFoodBrandManagement.Model.Entities.News
+
+@{
+    ViewData["Title"] = "Yeni Haber";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Yeni Haber Ekle</h1>
+    <p>Ana sayfada yayınlanacak haberi oluşturun.</p>
+</div>
+
+<div class="content-card">
+
+    <form action="/Admin/News/Add" method="post">
+
+        <div class="form-group">
+            <label>Haber Başlığı</label>
+            <input name="Title" class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Haber Açıklaması</label>
+            <textarea name="Description" rows="6" class="form-control-custom"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Resim URL</label>
+            <input name="ImageUrl" class="form-control-custom" placeholder="https://..." />
+        </div>
+
+        <button type="submit" class="btn-purple">
+            <i class="bi bi-check-circle"></i>
+            Kaydet
+        </button>
+
+        <a href="/Admin/News/Index" class="btn-cancel">
+            Vazgeç
+        </a>
+
+    </form>
+
+</div>

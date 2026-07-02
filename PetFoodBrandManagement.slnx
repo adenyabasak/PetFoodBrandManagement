@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PetFoodBrandManagement.Data/PetFoodBrandManagement.Data.csproj" />
+  <Project Path="PetFoodBrandManagement.Model/PetFoodBrandManagement.Model.csproj" />
+  <Project Path="PetFoodBrandManagement/PetFoodBrandManagement.csproj" />
+</Solution>

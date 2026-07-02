@@ -1,0 +1,90 @@
+﻿@model PetFoodBrandManagement.Model.Entities.Product
+
+@{
+    ViewData["Title"] = "Ürün Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Ürün Güncelle</h1>
+    <p>Ürün bilgilerini güncelleyebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+
+    <form action="/Admin/Product/Update" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+        <input type="hidden" name="ImageUrl" value="@Model.ImageUrl" />
+
+        <div class="form-group">
+            <label>Ürün Adı</label>
+            <input name="ProductName" value="@Model.ProductName" class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Marka</label>
+            <select name="BrandId" class="form-control-custom" asp-items="ViewBag.Brands">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Kategori</label>
+            <select name="CategoryId" class="form-control-custom" asp-items="ViewBag.Categories">
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Fiyat</label>
+            <input name="Price"
+                   value="@Model.Price"
+                   type="number"
+                   step="0.01"
+                   class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Stok</label>
+            <input name="Stock"
+                   value="@Model.Stock"
+                   type="number"
+                   class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Açıklama</label>
+            <textarea name="Description"
+                      class="form-control-custom"
+                      rows="4">@Model.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Mevcut Resim</label><br />
+
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" class="table-img" />
+            }
+            else
+            {
+                <span>Resim bulunmuyor</span>
+            }
+
+        </div>
+
+        <div class="form-group">
+            <label>Yeni Resim</label>
+            <input type="file" name="imageFile" class="form-control-custom" />
+        </div>
+
+        <button type="submit" class="btn-purple">
+            <i class="bi bi-arrow-repeat"></i> Güncelle
+        </button>
+
+        <a href="/Admin/Product/Index" class="btn-cancel">
+            Vazgeç
+        </a>
+
+    </form>
+
+</div>

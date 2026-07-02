@@ -1,0 +1,56 @@
+﻿@model IEnumerable<PetFoodBrandManagement.Model.Entities.Order>
+
+@{
+    ViewData["Title"] = "Siparişler";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Siparişler</h1>
+    <p>Tüm kullanıcı siparişlerini buradan görüntüleyebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+
+    <div class="table-header">
+        <h3>Sipariş Listesi</h3>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Müşteri</th>
+                <th>Telefon</th>
+                <th>Adres</th>
+                <th>Ürün</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Address</td>
+                    <td>@item.Product?.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalPrice ₺</td>
+                    <td>@item.OrderDate.ToShortDateString()</td>
+                    <td>@item.OrderStatus</td>
+                    <td>
+                        <a href="/Admin/Order/Delete/@item.OrderId" class="btn-delete">
+                            Sil
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

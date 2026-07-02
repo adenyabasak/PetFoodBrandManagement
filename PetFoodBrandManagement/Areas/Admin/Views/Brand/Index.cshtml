@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PetFoodBrandManagement.Model.Entities.Brand>
+
+@{
+    ViewData["Title"] = "Markalar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Markalar</h1>
+    <p>Mama markalarını buradan yönetebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+    <div class="table-header">
+        <h3>Marka Listesi</h3>
+        <a href="/Admin/Brand/Add" class="btn-purple">
+            <i class="bi bi-plus-circle"></i> Yeni Marka Ekle
+        </a>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Marka Adı</th>
+                <th>Açıklama</th>
+                <th>Durum</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.LogoUrl))
+                        {
+                            <img src="@item.LogoUrl" class="table-img" />
+                        }
+                        else
+                        {
+                            <span>Resim yok</span>
+                        }
+                    </td>
+                    <td>@item.BrandName</td>
+                    <td>@item.Description</td>
+                    <td>
+                        @if (item.Status)
+                        {
+                            <span class="status active">Aktif</span>
+                        }
+                        else
+                        {
+                            <span class="status passive">Pasif</span>
+                        }
+                    </td>
+                    <td>
+                        <a href="/Admin/Brand/Update/@item.BrandId" class="btn-edit">Düzenle</a>
+                        <a href="/Admin/Brand/Delete/@item.BrandId" class="btn-delete">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

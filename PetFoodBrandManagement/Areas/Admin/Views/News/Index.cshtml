@@ -1,0 +1,90 @@
+﻿@model IEnumerable<PetFoodBrandManagement.Model.Entities.News>
+
+@{
+    ViewData["Title"] = "Haberler";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Patili Dostlardan Haberler</h1>
+    <p>Kullanıcılara gösterilecek haberleri buradan yönetebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+
+    <div class="table-header">
+        <h3>Haber Listesi</h3>
+
+        <a href="/Admin/News/Add" class="btn-purple">
+            <i class="bi bi-plus-circle"></i> Yeni Haber Ekle
+        </a>
+    </div>
+
+    <table class="custom-table">
+
+        <thead>
+            <tr>
+                <th>Açıklama</th>
+                <th>Resim</th>
+                <th>Başlık</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl"
+                                 style="width:90px;height:70px;object-fit:cover;border-radius:15px;" />
+                        }
+                    </td>
+
+                    <td style="font-weight:600;">
+                        @item.Title
+                    </td>
+
+                    <td>
+                        @(item.Description?.Length > 50
+                            ? item.Description.Substring(0, 50) + "..."
+                            : item.Description)
+                    </td>
+
+                    <td>@item.NewsDate.ToShortDateString()</td>
+
+                    <td>
+                        @if (item.Status)
+                        {
+                            <span class="status active">Yayında</span>
+                        }
+                        else
+                        {
+                            <span class="status passive">Pasif</span>
+                        }
+                    </td>
+
+                    <td>
+
+                        <a href="/Admin/News/Update/@item.NewsId" class="btn-edit">
+                            Düzenle
+                        </a>
+                        <a href="/Admin/News/Delete/@item.NewsId" class="btn-delete">
+                            Sil
+                        </a>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PetFoodBrandManagement.Model.Entities.Review>
+
+@{
+    ViewData["Title"] = "Yorumlar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Yorumlar</h1>
+    <p>Kullanıcıların ürün yorumlarını buradan görüntüleyebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+
+    <div class="table-header">
+        <h3>Yorum Listesi</h3>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Kullanıcı</th>
+                <th>Ürün</th>
+                <th>Yorum</th>
+                <th>Puan</th>
+                <th>Tarih</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Product?.ProductName</td>
+                    <td>@item.Comment</td>
+                    <td>@item.Rating / 5</td>
+                    <td>@item.ReviewDate.ToShortDateString()</td>
+                    <td>
+                        <a href="/Admin/Review/Delete/@item.ReviewId" class="btn-delete">
+                            Sil
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

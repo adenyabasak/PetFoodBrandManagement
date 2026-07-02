@@ -1,0 +1,41 @@
+﻿@model PetFoodBrandManagement.Model.Entities.News
+
+@{
+    ViewData["Title"] = "Haber Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Haber Güncelle</h1>
+    <p>Seçilen haberi güncelleyebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+    <form action="/Admin/News/Update" method="post">
+
+        <input type="hidden" name="NewsId" value="@Model.NewsId" />
+        <input type="hidden" name="NewsDate" value="@Model.NewsDate" />
+        <input type="hidden" name="Status" value="@Model.Status.ToString()" />
+
+        <div class="form-group">
+            <label>Haber Başlığı</label>
+            <input name="Title" value="@Model.Title" class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Haber Açıklaması</label>
+            <textarea name="Description" rows="6" class="form-control-custom">@Model.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Resim URL</label>
+            <input name="ImageUrl" value="@Model.ImageUrl" class="form-control-custom" />
+        </div>
+
+        <button type="submit" class="btn-purple">
+            Güncelle
+        </button>
+
+        <a href="/Admin/News/Index" class="btn-cancel">Vazgeç</a>
+    </form>
+</div>

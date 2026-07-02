@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Giriş Yap</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div style="background:#fee2e2;color:#991b1b;padding:12px;border-radius:12px;margin-bottom:18px;">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form action="/Account/Login" method="post">
+            <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <input name="userName" class="form-control-custom" />
+            </div>
+
+            <div class="form-group">
+                <label>Şifre</label>
+                <input name="password" type="password" class="form-control-custom" />
+            </div>
+
+            <button type="submit" class="btn-main">Giriş Yap</button>
+
+            <a href="/Account/Register" class="btn-outline" style="color:#7c3aed;border-color:#7c3aed;margin-left:10px;">
+                Kayıt Ol
+            </a>
+        </form>
+    </div>
+</div>

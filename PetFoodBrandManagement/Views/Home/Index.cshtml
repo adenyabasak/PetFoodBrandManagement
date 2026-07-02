@@ -1,0 +1,156 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="hero-slider">
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+    <div class="hero-slide"></div>
+
+    <div class="hero-content">
+        <div>
+            <h5>DOSTLARIMIZ İÇİN EN İYİSİ</h5>
+            <h1>Mutlu Dostlar,<br />Sağlıklı <span>Yarınlar</span></h1>
+            <p>
+                Seçkin markalar, güvenilir içerikler ve kaliteli mama ürünleriyle
+                patili dostlarımız için en iyisini sunuyoruz.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/User/Product/Index" class="btn-main">
+                    Alışverişe Başla <i class="bi bi-bag"></i>
+                </a>
+
+                <a href="/User/Product/Index" class="btn-outline">
+                    Ürünleri Keşfet
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="service-strip">
+    <div class="service-item">
+        <i class="bi bi-truck"></i>
+        <div>
+            <strong>Ücretsiz Kargo</strong>
+            <p>750₺ ve üzeri siparişlerde</p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <i class="bi bi-bag-check"></i>
+        <div>
+            <strong>%100 Orijinal</strong>
+            <p>Tüm ürünler orijinal</p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <i class="bi bi-credit-card"></i>
+        <div>
+            <strong>Güvenli Ödeme</strong>
+            <p>256bit SSL ile korunur</p>
+        </div>
+    </div>
+
+    <div class="service-item">
+        <i class="bi bi-headset"></i>
+        <div>
+            <strong>7/24 Destek</strong>
+            <p>Her zaman yanınızdayız</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-title">
+        <div>
+            <small>EN ÇOK TERCİH EDİLENLER</small>
+            <h2>Popüler Ürünler</h2>
+        </div>
+
+        <a href="/User/Product/Index" class="btn-main">Tüm Ürünleri Gör</a>
+    </div>
+
+    <div class="product-mini-grid">
+
+        <div class="product-mini-card">
+            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=400&q=80" />
+            <h4>Royal Canin</h4>
+            <p>Mini Adult</p>
+            <div class="product-bottom">
+                <strong>1250₺</strong>
+                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-mini-card">
+            <img src="https://images.unsplash.com/photo-1568640347023-a616a30bc3bd?auto=format&fit=crop&w=400&q=80" />
+            <h4>Pro Plan</h4>
+            <p>Medium Adult</p>
+            <div class="product-bottom">
+                <strong>1150₺</strong>
+                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+
+        <div class="product-mini-card">
+            <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=400&q=80" />
+            <h4>Pedigree</h4>
+            <p>Adult Dog</p>
+            <div class="product-bottom">
+                <strong>650₺</strong>
+                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <div>
+            <small>PATİLİ DOSTLARDAN</small>
+            <h2>🐾 Güncel Haberler</h2>
+        </div>
+    </div>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="news-card">
+
+                    <img src="@item.ImageUrl" class="news-img" />
+
+                    <div class="news-body">
+
+                        <small class="news-date">
+                            @item.NewsDate.ToShortDateString()
+                        </small>
+
+                        <h4>@item.Title</h4>
+
+                        <p>
+                            @(item.Description.Length > 90
+                                ? item.Description.Substring(0, 90) + "..."
+                                : item.Description)
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</section>

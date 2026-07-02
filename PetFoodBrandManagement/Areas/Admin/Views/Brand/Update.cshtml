@@ -1,0 +1,40 @@
+﻿@model PetFoodBrandManagement.Model.Entities.Brand
+
+@{
+    ViewData["Title"] = "Marka Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard-title">
+    <h1>Marka Güncelle</h1>
+    <p>Seçilen mama markasını güncelleyebilirsiniz.</p>
+</div>
+
+<div class="content-card">
+    <form action="/Admin/Brand/Update" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="BrandId" value="@Model.BrandId" />
+        <input type="hidden" name="LogoUrl" value="@Model.LogoUrl" />
+
+        <div class="form-group">
+            <label>Marka Adı</label>
+            <input name="BrandName" value="@Model.BrandName" class="form-control-custom" />
+        </div>
+
+        <div class="form-group">
+            <label>Açıklama</label>
+            <textarea name="Description" class="form-control-custom" rows="4">@Model.Description</textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Yeni Logo Seç</label>
+            <input type="file" name="logoFile" class="form-control-custom" />
+        </div>
+
+        <button type="submit" class="btn-purple">
+            <i class="bi bi-arrow-repeat"></i> Güncelle
+        </button>
+
+        <a href="/Admin/Brand/Index" class="btn-cancel">Vazgeç</a>
+    </form>
+</div>
