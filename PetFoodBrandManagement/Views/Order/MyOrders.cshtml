@@ -1,0 +1,206 @@
+﻿@model List<PetFoodBrandManagement.Model.Entities.Order>
+
+@{
+    ViewData["Title"] = "Siparişlerim";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+
+    .order-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 28px;
+        background: linear-gradient(135deg,#ede9fe,#faf5ff);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 35px rgba(124,58,237,.18);
+        border: 2px solid #f3f4f6;
+    }
+
+        .order-icon i {
+            font-size: 55px;
+            color: #7c3aed;
+        }
+
+    .order-card {
+        background: white;
+        border-radius: 24px;
+        padding: 30px;
+        margin-bottom: 28px;
+        box-shadow: 0 20px 45px rgba(0,0,0,.08);
+        border: 1px solid #eee;
+    }
+
+    .order-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order-status {
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-weight: 700;
+    }
+
+    .order-info {
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 22px;
+        margin-top: 30px;
+    }
+
+    .order-box {
+        border-left: 1px solid #e5e7eb;
+        padding-left: 18px;
+    }
+
+        .order-box i {
+            color: #7c3aed;
+            font-size: 25px;
+        }
+
+        .order-box small {
+            display: block;
+            color: #6b7280;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .order-box strong {
+            font-size: 20px;
+        }
+</style>
+
+<section class="section" style="padding-top:150px;">
+
+    <div class="section-title">
+        <div>
+            <small>SİPARİŞLERİM</small>
+            <h2>Geçmiş Siparişlerim</h2>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="content-card">
+            <p>Henüz siparişiniz yok.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            string renk = "#22c55e";
+            string arka = "#dcfce7";
+
+            if (item.OrderStatus == "Hazırlanıyor")
+            {
+                renk = "#f59e0b";
+                arka = "#fef3c7";
+            }
+
+            if (item.OrderStatus == "Kargoda")
+            {
+                renk = "#3b82f6";
+                arka = "#dbeafe";
+            }
+
+            if (item.OrderStatus == "Teslim Edildi")
+            {
+                renk = "#16a34a";
+                arka = "#dcfce7";
+            }
+
+            <div class="order-card">
+
+                <div class="order-top">
+
+                    <div style="display:flex;align-items:center;gap:25px;">
+
+                        <div class="order-icon">
+
+                            @if (item.OrderStatus == "Hazırlanıyor")
+                            {
+                                <i class="bi bi-box-seam-fill"></i>
+                            }
+                            else if (item.OrderStatus == "Kargoda")
+                            {
+                                <i class="bi bi-truck"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-check-circle-fill"></i>
+                            }
+
+                        </div>
+
+                        <div>
+
+                            <small style="color:#7c3aed;font-weight:700;">ÜRÜN</small>
+
+                            <h2>@item.Product?.ProductName</h2>
+
+                            <p style="color:#6b7280;">
+                                Sipariş No : #@item.OrderId
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <span class="order-status" style="background:@arka;color:@renk;">
+                        @item.OrderStatus
+                    </span>
+
+                </div>
+
+                <div class="order-info">
+
+                    <div class="order-box">
+                        <i class="bi bi-box-seam"></i>
+                        <small>Adet</small>
+                        <strong>@item.Quantity</strong>
+                    </div>
+
+                    <div class="order-box">
+                        <i class="bi bi-cash-stack"></i>
+                        <small>Tutar</small>
+                        <strong>@item.TotalPrice.ToString("N2") ₺</strong>
+                    </div>
+
+                    <div class="order-box">
+                        <i class="bi bi-calendar-event"></i>
+                        <small>Tarih</small>
+                        <strong>@item.OrderDate.ToString("dd.MM.yyyy")</strong>
+                    </div>
+
+                    <div class="order-box">
+                        <i class="bi bi-clock-history"></i>
+                        <small>Saat</small>
+                        <strong>@item.OrderDate.ToString("HH:mm")</strong>
+                    </div>
+
+                </div>
+
+                <div style="margin-top:35px;display:flex;justify-content:space-between;align-items:center;">
+
+                    <span style="color:#6b7280;">
+                        Siparişinizle ilgili sorunuz varsa bizimle iletişime geçebilirsiniz.
+                    </span>
+
+                    <a href="/Product/Detail/@item.ProductId"
+                       class="btn-outline"
+                       style="color:#7c3aed;border-color:#7c3aed;">
+                        Ürüne Git
+                    </a>
+
+                </div>
+
+            </div>
+        }
+    }
+
+</section>

@@ -1,0 +1,124 @@
+﻿@{
+    ViewData["Title"] = "Karekod";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .qr-wrapper {
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #f3e8ff, #ecfeff);
+    }
+
+    .qr-card {
+        background: white;
+        padding: 45px;
+        border-radius: 28px;
+        text-align: center;
+        max-width: 560px;
+        width: 100%;
+        box-shadow: 0 20px 55px rgba(124, 58, 237, .25);
+        border: 1px solid #ede9fe;
+    }
+
+    .qr-icon {
+        width: 75px;
+        height: 75px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 34px;
+    }
+
+    .qr-card h2 {
+        font-size: 30px;
+        font-weight: 800;
+        color: #312e81;
+        line-height: 1.4;
+        margin-bottom: 15px;
+    }
+
+    .qr-card p {
+        color: #6b7280;
+        font-size: 17px;
+        margin-bottom: 28px;
+    }
+
+    .qr-image-box {
+        display: inline-block;
+        background: #f8fafc;
+        padding: 18px;
+        border-radius: 22px;
+        border: 2px dashed #a78bfa;
+    }
+
+        .qr-image-box img {
+            width: 250px;
+            height: 250px;
+            border-radius: 14px;
+        }
+
+    .qr-btn {
+        display: inline-block;
+        margin-top: 28px;
+        padding: 13px 28px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 10px 25px rgba(124, 58, 237, .30);
+    }
+
+        .qr-btn:hover {
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+</style>
+
+<div class="qr-wrapper">
+    <div class="qr-card">
+
+        <div class="qr-icon">
+            🐾
+        </div>
+
+        <h2>
+            Hayvanlarla İlgili Muhtemelen Bilmediğiniz
+            <br />
+            Şaşırtıcı Bilgiler
+        </h2>
+
+        <p>
+            Karekodu telefonunuzla okutarak egzotik hayvanlar hakkında ilginç bilgilere ulaşabilirsiniz.
+        </p>
+
+        @if (ViewBag.KareKodGorseli != null)
+        {
+            <div class="qr-image-box">
+                <img src="@ViewBag.KareKodGorseli" alt="Yönlendirme Karekodu" />
+            </div>
+
+            <br />
+
+            <a href="/Home/Index" class="qr-btn">
+                Ana Sayfaya Git
+            </a>
+        }
+        else
+        {
+            <p style="color:red;">
+                Karekod oluşturulamadı.
+            </p>
+        }
+
+    </div>
+</div>

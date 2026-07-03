@@ -425,3 +425,89 @@ body {
         border-color: #8b5cf6;
         box-shadow: 0 0 0 4px rgba(139,92,246,.15);
     }
+
+
+.admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 50px;
+    background: linear-gradient(135deg,#7c3aed,#a855f7);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 15px 35px rgba(124,58,237,.25);
+    transition: .30s;
+    margin-right: 15px;
+}
+
+    .admin-btn:hover {
+        transform: translateY(-4px);
+        color: white;
+        box-shadow: 0 22px 45px rgba(124,58,237,.35);
+    }
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border-radius: 40px;
+    background: linear-gradient(135deg,#7c3aed,#a855f7);
+    color: white !important;
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 16px 35px rgba(124,58,237,.35);
+}
+
+.user-profile-pill,
+.login-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 15px;
+    border-radius: 40px;
+    background: rgba(255,255,255,.20);
+    backdrop-filter: blur(14px);
+    color: white !important;
+    text-decoration: none;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: white;
+    color: #7c3aed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+    .user-text strong {
+        font-size: 14px;
+        color: white;
+    }
+
+    .user-text small {
+        font-size: 11px;
+        color: #e5e7eb;
+    }
+
+.logout-btn {
+    color: white !important;
+    font-size: 19px;
+    text-decoration: none;
+}

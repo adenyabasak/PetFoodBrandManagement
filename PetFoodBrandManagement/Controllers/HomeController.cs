@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetFoodBrandManagement.Data.Abstract;
 using PetFoodBrandManagement.Model.Entities;
+using QRCoder;
 
 namespace PetFoodBrandManagement.Controllers
 {
@@ -23,6 +24,38 @@ namespace PetFoodBrandManagement.Controllers
                 .ToList();
 
             return View(news);
+        }
+
+        public IActionResult About()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+
+        public IActionResult Karekod()
+        {
+            string hedefWebsitesi = " https://listelist.com/hayvanlar-hakkinda-ilginc-bilgiler/#google_vignette";
+
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(hedefWebsitesi, QRCodeGenerator.ECCLevel.Q))
+                {
+                    using (PngByteQRCode qrCode = new PngByteQRCode(qrCodeData))
+                    {
+                        byte[] qrCodeBytes = qrCode.GetGraphic(20);
+                        string base64Gorsel = Convert.ToBase64String(qrCodeBytes);
+
+                        ViewBag.KareKodGorseli = $"data:image/png;base64,{base64Gorsel}";
+                    }
+                }
+            }
+
+            return View();
         }
     }
 }

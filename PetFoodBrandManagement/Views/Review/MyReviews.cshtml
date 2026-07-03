@@ -1,0 +1,88 @@
+﻿@model List<PetFoodBrandManagement.Model.Entities.Review>
+
+@{
+    ViewData["Title"] = "Yorumlarım";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .review-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 26px;
+    }
+
+    .review-card {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 20px 45px rgba(0,0,0,.08);
+        border: 1px solid #eee;
+    }
+
+    .review-stars {
+        color: #f59e0b;
+        font-size: 22px;
+        margin: 12px 0;
+    }
+
+    .review-date {
+        color: #6b7280;
+        font-size: 14px;
+    }
+
+    .review-product {
+        color: #7c3aed;
+        font-weight: 700;
+    }
+</style>
+
+<section class="section" style="padding-top:150px;">
+
+    <div class="section-title">
+        <div>
+            <small>YORUMLARIM</small>
+            <h2>Ürün Yorumlarım</h2>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="content-card">
+            <p>Henüz yorumunuz yok.</p>
+        </div>
+    }
+    else
+    {
+        <div class="review-grid">
+
+            @foreach (var item in Model)
+            {
+                <div class="review-card">
+
+                    <span class="review-product">
+                        @item.Product?.ProductName
+                    </span>
+
+                    <div class="review-stars">
+                        @for (int i = 1; i <= item.Rating; i++)
+                        {
+                            <span>★</span>
+                        }
+                    </div>
+
+                    <p>
+                        @item.Comment
+                    </p>
+
+                    <span class="review-date">
+                        @item.ReviewDate.ToString("dd.MM.yyyy")
+                    </span>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</section>

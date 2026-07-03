@@ -19,22 +19,55 @@
         border: 1px solid #e5e7eb;
     }
 
-    .report-card h5 {
-        font-size: 15px;
-        color: #6b7280;
-        margin-bottom: 15px;
+        .report-card h5 {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+
+        .report-card h2 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+    .report-buttons {
+        margin: 25px 0 30px;
     }
 
-    .report-card h2 {
-        font-size: 34px;
-        font-weight: 700;
-        color: #7c3aed;
+    .btn-purple {
+        display: inline-block;
+        background: #7c3aed;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: .3s;
+        box-shadow: 0 8px 20px rgba(124,58,237,.25);
     }
+
+        .btn-purple:hover {
+            background: #6d28d9;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
 </style>
 
 <div class="dashboard-title">
     <h1>Raporlar</h1>
     <p>Sistem genelindeki temel istatistikleri buradan görebilirsiniz.</p>
+</div>
+
+<div class="report-buttons">
+    <a href="/Admin/Report/ExportExcel" class="btn-purple">
+        📊 Excel İndir
+    </a>
+
+    <a href="/Admin/Report/ExportPdf" class="btn-purple" style="margin-left:12px;">
+        📄 PDF İndir
+    </a>
 </div>
 
 <div class="report-grid">

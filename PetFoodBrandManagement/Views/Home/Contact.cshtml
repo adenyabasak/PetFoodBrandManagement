@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<section class="section" style="padding-top:150px;">
+    <div class="content-card">
+        <h1>İletişim</h1>
+
+        <p><strong>Adres:</strong> İstanbul / Türkiye</p>
+        <p><strong>Telefon:</strong> 0555 555 55 55</p>
+        <p><strong>E-posta:</strong> info@petfood.com</p>
+
+        <hr />
+
+        <h3>Bize Ulaşın</h3>
+
+        <form>
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <input class="form-control-custom" />
+            </div>
+
+            <div class="form-group">
+                <label>E-posta</label>
+                <input class="form-control-custom" />
+            </div>
+
+            <div class="form-group">
+                <label>Mesajınız</label>
+                <textarea rows="5" class="form-control-custom"></textarea>
+            </div>
+
+            <button type="button" class="btn-main">Gönder</button>
+        </form>
+    </div>
+</section>

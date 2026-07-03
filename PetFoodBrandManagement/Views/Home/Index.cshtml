@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<PetFoodBrandManagement.Model.Entities.News>
+
+@{
     ViewData["Title"] = "Ana Sayfa";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
@@ -20,12 +22,12 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="/User/Product/Index" class="btn-main">
+                <a href="/Product/Index" class="btn-main">
                     Alışverişe Başla <i class="bi bi-bag"></i>
                 </a>
 
-                <a href="/User/Product/Index" class="btn-outline">
-                    Ürünleri Keşfet
+                <a href="/Product/Index" class="btn-outline">
+                    Ürünleri Keşfet <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -73,7 +75,9 @@
             <h2>Popüler Ürünler</h2>
         </div>
 
-        <a href="/User/Product/Index" class="btn-main">Tüm Ürünleri Gör</a>
+        <a href="/Product/Index" class="btn-main">
+            Tüm Ürünleri Gör <i class="bi bi-arrow-right"></i>
+        </a>
     </div>
 
     <div class="product-mini-grid">
@@ -84,7 +88,7 @@
             <p>Mini Adult</p>
             <div class="product-bottom">
                 <strong>1250₺</strong>
-                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+                <a href="/Product/Index" class="cart-btn"><i class="bi bi-cart"></i></a>
             </div>
         </div>
 
@@ -94,7 +98,7 @@
             <p>Medium Adult</p>
             <div class="product-bottom">
                 <strong>1150₺</strong>
-                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+                <a href="/Product/Index" class="cart-btn"><i class="bi bi-cart"></i></a>
             </div>
         </div>
 
@@ -104,7 +108,7 @@
             <p>Adult Dog</p>
             <div class="product-bottom">
                 <strong>650₺</strong>
-                <button class="cart-btn"><i class="bi bi-cart"></i></button>
+                <a href="/Product/Index" class="cart-btn"><i class="bi bi-cart"></i></a>
             </div>
         </div>
 
@@ -112,7 +116,6 @@
 </section>
 
 <section class="section">
-
     <div class="section-title">
         <div>
             <small>PATİLİ DOSTLARDAN</small>
@@ -121,17 +124,13 @@
     </div>
 
     <div class="row">
-
         @foreach (var item in Model)
         {
             <div class="col-lg-3 col-md-6 mb-4">
-
                 <div class="news-card">
-
                     <img src="@item.ImageUrl" class="news-img" />
 
                     <div class="news-body">
-
                         <small class="news-date">
                             @item.NewsDate.ToShortDateString()
                         </small>
@@ -139,18 +138,13 @@
                         <h4>@item.Title</h4>
 
                         <p>
-                            @(item.Description.Length > 90
+                            @(item.Description != null && item.Description.Length > 90
                                 ? item.Description.Substring(0, 90) + "..."
                                 : item.Description)
                         </p>
-
                     </div>
-
                 </div>
-
             </div>
         }
-
     </div>
-
 </section>

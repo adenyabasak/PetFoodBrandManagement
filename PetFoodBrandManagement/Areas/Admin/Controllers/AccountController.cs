@@ -20,9 +20,9 @@ namespace PetFoodBrandManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(User user, string role)
         {
-            user.Role = "User";
+            user.Role = role;
             user.Status = true;
 
             _unitOfWork.User.Add(user);
@@ -38,14 +38,18 @@ namespace PetFoodBrandManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string userName, string password)
+        public IActionResult Login(string userName, string password, string role)
         {
             var user = _unitOfWork.User.GetAll()
-                .FirstOrDefault(x => x.UserName == userName && x.Password == password && x.Status);
+                .FirstOrDefault(x =>
+                    x.UserName == userName &&
+                    x.Password == password &&
+                    x.Role == role &&
+                    x.Status);
 
             if (user == null)
             {
-                ViewBag.Error = "Kullanıcı adı veya şifre hatalı.";
+                ViewBag.Error = "Kullanıcı adı, şifre veya giriş türü hatalı.";
                 return View();
             }
 
@@ -54,12 +58,23 @@ namespace PetFoodBrandManagement.Controllers
             HttpContext.Session.SetString("FullName", user.FullName);
             HttpContext.Session.SetString("Role", user.Role);
 
+            string logPath = Path.Combine(Directory.GetCurrentDirectory(), "Logs", "log.txt");
+            string mesaj = $"{DateTime.Now:dd.MM.yyyy HH:mm:ss} | LOGIN | {user.FullName} sisteme giriş yaptı. Rol: {user.Role}";
+            System.IO.File.AppendAllText(logPath, mesaj + Environment.NewLine);
+
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Logout()
         {
+            string fullName = HttpContext.Session.GetString("FullName") ?? "Bilinmeyen Kullanıcı";
+
+            string logPath = Path.Combine(Directory.GetCurrentDirectory(), "Logs", "log.txt");
+            string mesaj = $"{DateTime.Now:dd.MM.yyyy HH:mm:ss} | LOGOUT | {fullName} sistemden çıkış yaptı.";
+            System.IO.File.AppendAllText(logPath, mesaj + Environment.NewLine);
+
             HttpContext.Session.Clear();
+
             return RedirectToAction("Login");
         }
     }

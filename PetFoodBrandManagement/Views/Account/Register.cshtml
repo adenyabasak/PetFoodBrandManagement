@@ -3,13 +3,24 @@
 @{
     ViewData["Title"] = "Kayıt Ol";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    string role = Context.Request.Query["role"];
+    if (string.IsNullOrEmpty(role))
+    {
+        role = "User";
+    }
 }
 
 <div class="auth-wrapper">
     <div class="auth-card">
-        <h2>Kayıt Ol</h2>
+        <h2>
+            @(role == "Admin" ? "👑 Admin Kayıt Ol" : "👤 User Kayıt Ol")
+        </h2>
 
         <form action="/Account/Register" method="post">
+
+            <input type="hidden" name="role" value="@role" />
+
             <div class="form-group">
                 <label>Ad Soyad</label>
                 <input name="FullName" class="form-control-custom" />
@@ -30,7 +41,10 @@
                 <input name="Password" type="password" class="form-control-custom" />
             </div>
 
-            <button type="submit" class="btn-main">Kayıt Ol</button>
+            <button type="submit" class="btn-main">
+                @(role == "Admin" ? "Admin Olarak Kayıt Ol" : "User Olarak Kayıt Ol")
+            </button>
+
         </form>
     </div>
 </div>

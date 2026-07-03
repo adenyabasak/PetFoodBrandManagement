@@ -10,6 +10,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="~/css/user.css" rel="stylesheet" />
+
+    <style>
+            body {
+                margin: 0;
+            }
+
+            main {
+                min-height: calc(100vh - 110px);
+                padding-top: 110px;
+            }
+    </style>
 </head>
 
 <body>
@@ -30,37 +41,43 @@
             <a href="/Product/Index">Ürünler</a>
             <a href="/Order/MyOrders">Siparişlerim</a>
             <a href="/Review/MyReviews">Yorumlarım</a>
-            <a href="#">Hakkımızda</a>
-            <a href="#">İletişim</a>
+            <a href="/Home/About">Hakkımızda</a>
+            <a href="/Home/Contact">İletişim</a>
+            <a href="/Home/Karekod">Karekod</a>
         </nav>
 
         <div class="user-actions">
 
-            <i class="bi bi-cart3"></i>
+            @if (Context.Session.GetString("Role") == "Admin")
+            {
+                <a href="/Admin/Home/Index" class="admin-panel-btn">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Admin Paneli</span>
+                </a>
+            }
 
             @if (Context.Session.GetString("UserName") == null)
             {
-                <a href="/Account/Login" class="user-pill" style="text-decoration:none;">
-
+                <a href="/Account/Login" class="login-pill">
                     <i class="bi bi-person-fill"></i>
-
                     <span>Giriş Yap</span>
-
                 </a>
             }
             else
             {
-                <div class="user-pill">
+                <div class="user-profile-pill">
+                    <div class="user-avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
 
-                    <i class="bi bi-person-fill"></i>
+                    <div class="user-text">
+                        <strong>@Context.Session.GetString("FullName")</strong>
+                        <small>@Context.Session.GetString("Role")</small>
+                    </div>
 
-                    <span>@Context.Session.GetString("FullName")</span>
-
-                    <a href="/Account/Logout"
-                       style="margin-left:10px;color:white;text-decoration:none;font-size:13px;">
-                        Çıkış
+                    <a href="/Account/Logout" class="logout-btn">
+                        <i class="bi bi-box-arrow-right"></i>
                     </a>
-
                 </div>
             }
 
@@ -75,5 +92,4 @@
     @RenderSection("Scripts", required: false)
 
 </body>
-
 </html>

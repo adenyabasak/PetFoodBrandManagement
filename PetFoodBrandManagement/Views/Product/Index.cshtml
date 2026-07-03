@@ -1,0 +1,124 @@
+﻿@model List<PetFoodBrandManagement.Model.Entities.Product>
+
+@{
+    ViewData["Title"] = "Ürünler";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .product-page-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+    }
+
+    .product-card-premium {
+        background: #fff;
+        border-radius: 26px;
+        padding: 24px;
+        box-shadow: 0 20px 45px rgba(0,0,0,.08);
+        border: 1px solid #eee;
+        transition: .3s;
+    }
+
+        .product-card-premium:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-card-premium img {
+            width: 100%;
+            height: 210px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .product-card-premium h3 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .product-card-premium p {
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+    .product-price {
+        font-size: 26px;
+        font-weight: 800;
+        color: #7c3aed;
+        margin: 18px 0;
+    }
+
+    .product-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .detail-btn {
+        padding: 12px 18px;
+        border-radius: 16px;
+        background: #ede9fe;
+        color: #7c3aed;
+        text-decoration: none;
+        font-weight: 700;
+    }
+</style>
+
+<section class="section" style="padding-top:150px;">
+
+    <div class="section-title">
+        <div>
+            <small>ÜRÜNLER</small>
+            <h2>Tüm Mama Ürünleri</h2>
+        </div>
+    </div>
+
+    <div class="product-page-grid">
+
+        @foreach (var item in Model)
+        {
+            <div class="product-card-premium">
+
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@item.ImageUrl" />
+                }
+                else
+                {
+                    <div style="height:210px;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-bag-heart-fill" style="font-size:70px;color:#7c3aed;"></i>
+                    </div>
+                }
+
+                <h3>@item.ProductName</h3>
+
+                <p>
+                    @item.Brand?.BrandName - @item.Category?.CategoryName
+                </p>
+
+                <p>
+                    Stok: @item.Stock
+                </p>
+
+                <div class="product-price">
+                    @item.Price.ToString("N2") ₺
+                </div>
+
+                <div class="product-actions">
+                    <a href="/Product/Detail/@item.ProductId" class="detail-btn">
+                        Detay
+                    </a>
+
+                    <a href="/Order/Create/@item.ProductId" class="btn-main">
+                        Sipariş Ver
+                    </a>
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</section>

@@ -1,0 +1,110 @@
+﻿@model PetFoodBrandManagement.Model.Entities.Product
+
+@{
+    ViewData["Title"] = "Ürün Detay";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<style>
+    .detail-card {
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: 0 25px 60px rgba(0,0,0,.10);
+        border: 1px solid #eee;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 45px;
+        align-items: center;
+    }
+
+    .detail-image {
+        height: 430px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        border-radius: 28px;
+    }
+
+        .detail-image img {
+            max-width: 100%;
+            max-height: 390px;
+            object-fit: contain;
+        }
+
+    .detail-title {
+        font-size: 44px;
+        font-weight: 800;
+        margin: 15px 0;
+    }
+
+    .detail-info {
+        color: #6b7280;
+        font-size: 16px;
+        line-height: 30px;
+    }
+
+    .detail-price {
+        font-size: 36px;
+        font-weight: 800;
+        color: #7c3aed;
+        margin: 25px 0;
+    }
+
+    .detail-badge {
+        display: inline-block;
+        padding: 9px 15px;
+        border-radius: 20px;
+        background: #ede9fe;
+        color: #7c3aed;
+        font-weight: 700;
+        margin-right: 8px;
+    }
+</style>
+
+<section class="section" style="padding-top:150px;">
+
+    <div class="detail-card">
+
+        <div class="detail-image">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" />
+            }
+            else
+            {
+                <i class="bi bi-bag-heart-fill" style="font-size:100px;color:#7c3aed;"></i>
+            }
+        </div>
+
+        <div>
+            <span class="detail-badge">@Model.Brand?.BrandName</span>
+            <span class="detail-badge">@Model.Category?.CategoryName</span>
+
+            <h1 class="detail-title">@Model.ProductName</h1>
+
+            <p class="detail-info">
+                @Model.Description
+            </p>
+
+            <p><strong>Stok:</strong> @Model.Stock adet</p>
+
+            <div class="detail-price">
+                @Model.Price.ToString("N2") ₺
+            </div>
+
+            <a href="/Order/Create/@Model.ProductId" class="btn-main">
+                Sipariş Ver <i class="bi bi-cart-check"></i>
+            </a>
+
+            <a href="/Review/Create/@Model.ProductId"
+               class="btn-outline"
+               style="color:#7c3aed;border-color:#7c3aed;margin-left:10px;">
+                Yorum Yap
+            </a>
+        </div>
+
+    </div>
+
+</section>

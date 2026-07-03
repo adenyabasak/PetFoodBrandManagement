@@ -16,6 +16,10 @@ namespace PetFoodBrandManagement.Model.Entities
 
         public DateTime ReviewDate { get; set; }
 
+        public bool Status { get; set; }
+
+        public int? UserId { get; set; }
+
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]

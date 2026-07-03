@@ -15,6 +15,15 @@
         }
 
         <form action="/Account/Login" method="post">
+
+            <div class="form-group">
+                <label>Giriş Türü</label>
+                <select name="role" class="form-control-custom">
+                    <option value="User">👤 User Girişi</option>
+                    <option value="Admin">👑 Admin Girişi</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label>Kullanıcı Adı</label>
                 <input name="userName" class="form-control-custom" />
@@ -27,9 +36,20 @@
 
             <button type="submit" class="btn-main">Giriş Yap</button>
 
-            <a href="/Account/Register" class="btn-outline" style="color:#7c3aed;border-color:#7c3aed;margin-left:10px;">
-                Kayıt Ol
-            </a>
+            <div style="margin-top:20px;text-align:center;">
+                <a href="/Account/Register?role=User"
+                   class="btn-outline"
+                   style="color:#7c3aed;border-color:#7c3aed;">
+                    👤 User Kayıt Ol
+                </a>
+
+                <a href="/Account/Register?role=Admin"
+                   class="btn-outline"
+                   style="margin-left:10px;color:#dc2626;border-color:#dc2626;">
+                    👑 Admin Kayıt Ol
+                </a>
+            </div>
+
         </form>
     </div>
 </div>

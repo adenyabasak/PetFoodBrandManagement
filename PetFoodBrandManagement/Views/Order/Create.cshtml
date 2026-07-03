@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Sipariş Ver";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var product = ViewBag.Product as PetFoodBrandManagement.Model.Entities.Product;
+}
+
+<style>
+    .order-create-card {
+        max-width: 760px;
+        margin: auto;
+        background: white;
+        border-radius: 30px;
+        padding: 40px;
+        box-shadow: 0 25px 60px rgba(0,0,0,.10);
+        border: 1px solid #eee;
+    }
+
+    .order-product-box {
+        background: #f7f3ff;
+        border-radius: 22px;
+        padding: 22px;
+        margin-bottom: 28px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .order-product-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7c3aed;
+        font-size: 34px;
+    }
+
+    .order-product-box h3 {
+        margin: 0;
+        font-weight: 800;
+    }
+
+    .order-product-box p {
+        margin: 5px 0 0;
+        color: #6b7280;
+    }
+</style>
+
+<section class="section" style="padding-top:150px;">
+
+    <div class="order-create-card">
+
+        <h2>Sipariş Ver</h2>
+
+        <div class="order-product-box">
+            <div class="order-product-icon">
+                <i class="bi bi-bag-heart-fill"></i>
+            </div>
+
+            <div>
+                <h3>@product.ProductName</h3>
+                <p>@product.Price.ToString("N2") ₺</p>
+            </div>
+        </div>
+
+        <form action="/Order/Create" method="post">
+
+            <input type="hidden" name="ProductId" value="@product.ProductId" />
+
+            <div class="form-group">
+                <label>Ad Soyad</label>
+                <input name="CustomerName" class="form-control-custom" />
+            </div>
+
+            <div class="form-group">
+                <label>Telefon</label>
+                <input name="Phone" class="form-control-custom" />
+            </div>
+
+            <div class="form-group">
+                <label>Adres</label>
+                <textarea name="Address" rows="4" class="form-control-custom"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Adet</label>
+                <input name="Quantity" type="number" value="1" min="1" class="form-control-custom" />
+            </div>
+
+            <button type="submit" class="btn-main">
+                Siparişi Tamamla
+            </button>
+
+            <a href="/Product/Detail/@product.ProductId"
+               class="btn-outline"
+               style="color:#7c3aed;border-color:#7c3aed;margin-left:10px;">
+                Vazgeç
+            </a>
+
+        </form>
+
+    </div>
+
+</section>
