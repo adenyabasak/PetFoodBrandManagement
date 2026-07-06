@@ -4,7 +4,7 @@
 
 The Pet Food Brand Management System is a comprehensive web application developed using **ASP.NET Core MVC**, **Entity Framework Core Code First**, and the **Unit of Work** design pattern. The project was designed to provide a complete management platform for pet food brands, products, customer orders, reviews, and website content while following modern software architecture principles.
 
-The application follows a **layered architecture**, separating the project into **UI**, **Data**, and **Model** layers. Repository Pattern and Unit of Work were implemented together to create a clean, maintainable, and scalable application structure. Interfaces were used throughout the project to reduce dependency between layers and support loose coupling, making future maintenance and development significantly easier.
+The application follows a **layered architecture**, separating the project into **UI**, **Data**, and **Model** layers. Repository Pattern and Unit of Work were implemented together to create a clean, maintainable, and scalable application structure. Interfaces were used throughout the project to reduce dependency between layers and support loose coupling, making future maintenance and development significantly easier. In addition, **Logging** and **In-Memory Caching** mechanisms were integrated to improve application monitoring, performance, and maintainability. Logging records important application events and errors, while caching minimizes unnecessary database requests and improves overall system performance.
 
 The system includes separate administrator and user interfaces. Users can register, log into the system, browse pet food products, create orders, leave product reviews, and access their personal order history. Session-based authentication is used to manage user access and authorization.
 
@@ -28,6 +28,8 @@ Overall, this project demonstrates practical experience with ASP.NET Core MVC, E
 - Generic Repository Pattern
 - Layered Architecture
 - Interface-Based Programming
+- Logging
+- In-Memory Caching
 - Bootstrap 5
 - HTML5
 - CSS3
@@ -66,12 +68,13 @@ Overall, this project demonstrates practical experience with ASP.NET Core MVC, E
 - PDF Export
 - Excel Export
 - QR Code Generation
+- Logging System
+- In-Memory Caching
 - SQL Server Integration
 - Repository Pattern
 - Unit of Work Pattern
 - Layered Architecture
 - Interface-Based Development
-
 ---
 
 # Project Screenshots
@@ -195,6 +198,24 @@ Exports application data into professionally formatted PDF documents.
 Allows administrators to export reports into Microsoft Excel format.
 
 ---
+---
+
+## Logging
+
+![Logging](https://github.com/adenyabasak/PetFoodBrandManagement/blob/master/images/loglama.png)
+
+The application records important system events, user activities, and application errors through a centralized logging mechanism. Logging improves debugging, monitoring, and maintenance by providing detailed execution information.
+
+---
+
+## Caching
+
+![Caching](https://github.com/adenyabasak/PetFoodBrandManagement/blob/master/images/cacheleme.png)
+
+An in-memory caching mechanism was implemented to reduce unnecessary database queries and improve application performance. Frequently accessed data is temporarily stored in memory, resulting in faster response times and better scalability.
+
+
+
 
 ## QR Code
 
@@ -227,6 +248,26 @@ Latest news is presented to visitors on the home page.
 Provides contact information and communication details for visitors.
 
 ---
+
+
+
+
+
+---
+
+## Additional Enterprise Features
+
+To improve the application's maintainability, performance, and scalability, several enterprise-level features were implemented throughout the project.
+
+### Logging
+
+A centralized logging mechanism was integrated into the application to record important system events, user activities, warnings, and runtime errors. This makes debugging easier, helps monitor application behavior, and improves maintainability during development and production.
+
+### In-Memory Caching
+
+In-Memory Caching was implemented to reduce unnecessary database queries and improve application performance. Frequently accessed data is temporarily stored in memory, resulting in faster response times, lower database load, and a more efficient user experience.
+
+These features demonstrate the use of modern enterprise application practices alongside the Repository Pattern, Unit of Work, layered architecture, and interface-based development.
 
 ## Purpose
 
